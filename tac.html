@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe vs AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 5px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #333;
+            font-size: 2em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe vs AI</h1>
+    <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const board = document.getElementById('board');
+            const cells = document.querySelectorAll('.cell');
+            let currentPlayer = 'X';
+
+            cells.forEach(cell => {
+                cell.addEventListener('click', function () {
+                    if (!cell.textContent) {
+                        cell.textContent = currentPlayer;
+                        if (checkWinner(currentPlayer)) {
+                            alert(`Player ${currentPlayer} wins!`);
+                            resetBoard();
+                        } else if (isBoardFull()) {
+                            alert('It\'s a tie!');
+                            resetBoard();
+                        } else {
+                            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                            playAI();
+                        }
+                    }
+                });
+            });
+
+            function playAI() {
+                // Implement AI logic here
+                const emptyCells = Array.from(cells).filter(cell => !cell.textContent);
+                if (emptyCells.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * emptyCells.length);
+                    const aiCell = emptyCells[randomIndex];
+                    aiCell.textContent = currentPlayer;
+                    if (checkWinner(currentPlayer)) {
+                        alert(`Player ${currentPlayer} wins!`);
+                        resetBoard();
+                    } else if (isBoardFull()) {
+                        alert('It\'s a tie!');
+                        resetBoard();
+                    } else {
+                        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                    }
+                }
+            }
+
+            function checkWinner(player) {
+                // Check for a winner
+                // This is a basic example, you may want to implement a more advanced check
+                const lines = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+                    [0, 4, 8], [2, 4, 6]              // Diagonals
+                ];
+
+                for (const line of lines) {
+                    const [a, b, c] = line;
+                    if (cells[a].textContent === player && cells[b].textContent === player && cells[c].textContent === player) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function isBoardFull() {
+                // Check if the board is full
+                return Array.from(cells).every(cell => cell.textContent !== '');
+            }
+
+            function resetBoard() {
+                // Reset the board
+                cells.forEach(cell => {
+                    cell.textContent = '';
+                });
+                currentPlayer = 'X';
+            }
+        });
+    </script>
+</body>
+</html>

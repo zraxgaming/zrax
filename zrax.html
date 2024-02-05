@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zrax Gaming - Your Gaming Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(90deg, #FF0000, #000000);
+        }
+        header {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1, h2, p {
+            color: #fff;
+            text-align: center;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .btn-tic-tac-toe {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 8px;
+            z-index: 9999;
+        }
+        .modal-content {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Zrax Gaming - Your Gaming Hub</h1>
+        <h2>Level up your gaming experience with Zrax Gaming!</h2>
+    </header>
+
+    <section>
+        <h2>About Me:</h2>
+        <p>
+            Welcome to Zrax Gaming, your ultimate destination for gaming content and tech reviews. I'm passionate about sharing my gaming experiences and connecting with the gaming community. Join me on this exciting journey!
+        </p>
+
+        <h2>Social Links:</h2>
+        <p>
+            <a href="https://twitter.com/ZraxGaming" target="_blank">Twitter</a> |
+            <a href="https://www.facebook.com/zain.abusal" target="_blank">Facebook</a> |
+            <a href="https://www.instagram.com/zraxgaming113/?hl=en" target="_blank">Instagram</a> |
+            <a href="https://www.youtube.com/watch?time_continue=34&v=yD9KnOkgSzI&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">YouTube</a>
+        </p>
+
+        <h2>Merch Store:</h2>
+        <p>
+            Check out our merch store: <a href="https://streamlabs.com/zaingamingyt113/merch" target="_blank">Merch Store</a>
+        </p>
+
+        <h2>Latest Video Recommendation:</h2>
+        <div style="display: flex; justify-content: center;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/yD9KnOkgSzI?si=QEEUBtudrLtUP8MY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+
+        <!-- Additional Content Placeholder -->
+        <h2>Other:</h2>
+        <p>
+            Zrax Gaming is a channel where an adventure starts with a journey of a lifetime zrax feels he wants to achieve something big not for views but for entertainment for people
+        </p>
+
+        <!-- Tic Tac Toe Button -->
+        <button class="btn-tic-tac-toe" onclick="openModal()">Play Tic Tac Toe with AI</button>
+    </section>
+
+    <!-- Modal for Tic Tac Toe -->
+    <div id="ticTacToeModal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeModal()" style="cursor: pointer; color: #3498db;">Close</span>
+            <iframe id="ticTacToeFrame" width="600" height="400" src="tic_tac_toe.html" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('ticTacToeModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('ticTacToeModal').style.display = 'none';
+            document.getElementById('ticTacToeFrame').src = 'tic_tac_toe.html'; // Reset the iframe source
+        }
+    </script>
+</body>
+</html>
